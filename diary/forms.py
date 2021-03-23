@@ -1,6 +1,7 @@
 from django import forms
 
-from .models import Diary, DiaryImage
+# from .models import Diary, DiaryImage
+from .models import Diary
 
 
 class DiaryForm(forms.ModelForm):
@@ -10,8 +11,8 @@ class DiaryForm(forms.ModelForm):
         fields = ('title', 'content', 'date', 'mood')
 
 
-class DiaryImageForm(forms.ModelForm):
-    """form for creating diaryimage model"""
-    class Meta:
-        model = DiaryImage
-        fields = ('diary', 'image')
+# class DiaryImageForm(forms.ModelForm):
+#     """form for creating diaryimage model"""
+#     class Meta:
+#         model = DiaryImage
+#         fields = ('diary', 'image')
