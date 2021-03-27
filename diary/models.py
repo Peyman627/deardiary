@@ -24,8 +24,8 @@ class Diary(models.Model):
         return self.title
 
 
-# class DiaryImage(models.Model):
-#     diary = models.ForeignKey(Diary,
-#                               related_name='images',
-#                               on_delete=models.CASCADE)
-#     image = models.ImageField(upload_to='images/', blank=True, null=True)
+class DiaryImage(models.Model):
+    diary = models.ForeignKey(Diary,
+                              related_name='images',
+                              on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
