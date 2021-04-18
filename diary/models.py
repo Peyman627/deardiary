@@ -1,7 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# passing this variable to choice parameter of mood
-# in diary model
 MOOD = (
     (0, 'brilliant'),
     (1, 'good'),
@@ -12,6 +11,9 @@ MOOD = (
 
 
 class Diary(models.Model):
+    owner = models.ForeignKey(User,
+                              related_name='diaries',
+                              on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     content = models.TextField()
     date = models.DateField(auto_now_add=True)
@@ -19,6 +21,7 @@ class Diary(models.Model):
 
     class Meta:
         ordering = ('date', )
+        verbose_name_plural = 'diaries'
 
     def __str__(self):
         return self.title
