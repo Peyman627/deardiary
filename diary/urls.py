@@ -5,8 +5,12 @@ from . import views
 
 urlpatterns = [
     path('api-auth', include('rest_framework.urls')),
+    path('', views.api_root),
     path('diary/', views.DiaryList.as_view(), name='diary-list'),
     path('diary/<int:pk>', views.DiaryDetail.as_view(), name='diary-detail'),
+    path('diary/<int:pk>/images',
+         views.DiaryImageDetail.as_view(),
+         name='diaryimage-detail'),
     path('users/', views.UserList.as_view(), name='user-list'),
     path('users/<int:pk>/', views.UserDetail.as_view(), name='user-detail')
 ]
