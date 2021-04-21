@@ -26,4 +26,4 @@ class DiarySerializer(serializers.HyperlinkedModelSerializer):
 class DiaryImageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DiaryImage
-        fields = ('image', )
+        fields = ('diary', 'image')

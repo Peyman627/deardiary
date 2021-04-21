@@ -26,4 +26,4 @@ class DiaryViewSet(viewsets.ModelViewSet):
 class DiaryImageViewSet(viewsets.ModelViewSet):
     queryset = DiaryImage.objects.all()
     serializer_class = DiaryImageSerializer
-    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
