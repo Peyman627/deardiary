@@ -4,7 +4,7 @@ from rest_framework import viewsets
 
 from .models import Diary, DiaryImage
 from .serializers import DiaryImageSerializer, DiarySerializer, UserSerializer
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwner
 
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
@@ -13,14 +13,19 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class DiaryViewSet(viewsets.ModelViewSet):
-    queryset = Diary.objects.all()
     serializer_class = DiarySerializer
-    permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly
-    ]
+    permission_classes = [IsOwner, permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the
+        diary enteries by the user
+        """
+        user = self.request.user
+        return Diary.objects.filter(owner=user)
 
 
 class DiaryImageViewSet(viewsets.ModelViewSet):
